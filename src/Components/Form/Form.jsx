@@ -5,8 +5,8 @@ export default function Form(){
         <main>
             <form  className="form-container">
 
-                <input type="text" placeholder="top text" className="form--input" />
-                <input type="text" placeholder="bottom text" className="form--input" />
+                <input type="text" placeholder="Top text" className="form--input" />
+                <input type="text" placeholder="Bottom text" className="form--input" />
                 <button className="form--btn">Get a new meme image 🖼</button>
             </form>
 
