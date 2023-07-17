@@ -46,3 +46,15 @@ main {
   color: #fff;
   font-size: 1.2em;
 }
+
+.meme {
+  width: 60%;
+  display: flex;
+  margin: 2em auto;
+ 
+
+}
+
+.meme-image {
+  width: 100%;
+}
