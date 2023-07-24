@@ -1,5 +1,5 @@
-import React from 'react'
-import data from '../../memesData'
+import React, {useState, useEffect} from 'react'
+
 
 
 
@@ -8,14 +8,24 @@ import data from '../../memesData'
 export default function Form(){
     
 
-    const [meme, setMeme] = React.useState({topText:'', bottomText:'', randomImage:'http://i.imgflip.com/1bij.jpg' })
+    const [meme, setMeme] = useState({topText:'', bottomText:'', randomImage:'http://i.imgflip.com/1bij.jpg' })
 
-    const [allMemeImages, setAllMemeImages] = React.useState(data)
+    const [allMemes, setAllMemes] = useState()
+
+    // Fetch request inside a useEffect - will update later to async/await
+
+    useEffect(() => {
+        fetch("https://api.imgflip.com/get_memes")
+            .then(res => res.json())
+            .then(data => setAllMemes(data))
+    }, [])
 
    
+    // Function to get a random meme image from the memesData file
+
     function getMemeImage() {
         
-        const memesArray = allMemeImages.data.memes
+        const memesArray = allMemes.data.memes
 
         
         const randomNum = Math.floor(Math.random() * memesArray.length)
@@ -34,6 +44,8 @@ export default function Form(){
        
 
     }
+
+    // Function to handle the changes to text inputs
 
     function handleChange(event) {
         const {name, value} = event.target
@@ -74,7 +86,7 @@ export default function Form(){
                     Get a new meme image 🖼
                     
                 </button>
-                
+
             </div>
             <div className="meme">
             <img className="meme-image" src={meme.randomImage} />
