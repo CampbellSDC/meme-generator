@@ -12,12 +12,15 @@ export default function Form(){
 
     const [allMemes, setAllMemes] = useState()
 
-    // Fetch request inside a useEffect - will update later to async/await
+    // Fetch request inside a useEffect 
 
     useEffect(() => {
-        fetch("https://api.imgflip.com/get_memes")
-            .then(res => res.json())
-            .then(data => setAllMemes(data))
+        async function getMemes(){
+           const res = await fetch("https://api.imgflip.com/get_memes")
+           const data = await res.json()
+           setAllMemes(data)
+        }
+        getMemes()
     }, [])
 
    
